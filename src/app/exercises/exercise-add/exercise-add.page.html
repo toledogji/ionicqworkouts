@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+       <ion-back-button text="Exercises" color="light" defaultHref="/exercises"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="warning">New Exercise</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col>
+      <ion-card>
+        <ion-card-content>
+          <ion-input type="text" placeholder="Exercise name" #name></ion-input>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-content>
+          <ion-select placeholder="Select difficulty" [interfaceOptions]="customPopoverOptions" interface="popover" #difficulty>
+            <ion-select-option value="beginner">BEGINNER</ion-select-option>
+            <ion-select-option value="intermediate">INTERMEDIATE</ion-select-option>
+            <ion-select-option value="advanced">ADVANCED</ion-select-option>
+          </ion-select>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-content>
+          <ion-select placeholder="Select equipment" multiple="true" cancelText="Cancel" okText="OK" #equipment>
+            <ion-select-option value="pull up bar">Pull up bar</ion-select-option>
+            <ion-select-option value="paralletes">Paralletes</ion-select-option>
+            <ion-select-option value="bench">Bench</ion-select-option>
+            <ion-select-option value="bench">Low bar</ion-select-option>
+            <ion-select-option value="bench">Barbell</ion-select-option>
+            <ion-select-option value="bench">Dumbbell</ion-select-option>
+            <ion-select-option value="bench">Resistance band</ion-select-option>
+            <ion-select-option value="bench">Weight vest</ion-select-option>
+          </ion-select>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-content>
+          <ion-select placeholder="Select muscle group" multiple="true" cancelText="Cancel" okText="OK" #muscleGroup>
+            <ion-select-option value="whole body">Whole body</ion-select-option>
+            <ion-select-option value="back">Back</ion-select-option>
+            <ion-select-option value="biceps">Biceps</ion-select-option>
+            <ion-select-option value="chest">Chest</ion-select-option>
+            <ion-select-option value="triceps">Triceps</ion-select-option>
+            <ion-select-option value="shoulders">Shoulders</ion-select-option>
+            <ion-select-option value="abs">Abs</ion-select-option>
+            <ion-select-option value="Legs">Legs</ion-select-option>
+          </ion-select>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-content>
+          <ion-input type="text" placeholder="Video link" #videoLink></ion-input>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-content>
+          <ion-input type="text" placeholder="Thumbnail" #thumbnail></ion-input>
+        </ion-card-content>
+      </ion-card>
+      <ion-button expand="block" color="warning" (click)="saveNewExercise(name, difficulty, equipment, muscleGroup, videoLink, thumbnail)">
+        Save Exercise
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

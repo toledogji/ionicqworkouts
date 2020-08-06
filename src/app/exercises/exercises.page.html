@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title color="warning" class="ion-text-center">Exercises</ion-title> 
+    <ion-buttons>
+      <ion-button color="warning" (click)="goToHome()" >
+        <ion-icon name="globe"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="exercises; else noExercises">
+    <ion-item *ngFor="let exercise of exercises" [routerLink]="['/exercises', exercise._id]">
+      <ion-avatar slot="start">
+        <ion-img [src]="exercise.thumbnail"></ion-img>  
+      </ion-avatar>
+      <ion-label>
+        {{exercise.name}}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ng-template #noExercises>
+    <ion-text class="ion-text-center">
+      <h1>No exercises loaded</h1>
+    </ion-text>
+  </ng-template>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="warning" (click)="addNewPlace()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
