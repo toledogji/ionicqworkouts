@@ -13,26 +13,26 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid class="ion-no-padding">
+  <ion-grid class="ion-no-padding" *ngIf="exercise">
     <ion-row>
       <ion-col>
-        <ion-img [src]="exercise.thumbnail"></ion-img>
+        <ion-img [src]="exercise?.thumbnail"></ion-img>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <h1 class="ion-text-center">{{exercise.name}}</h1>        
+        <h1 class="ion-text-center">{{exercise?.name}}</h1>        
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <h1 class="ion-text-center">{{exercise.difficulty}}</h1>        
+        <h1 class="ion-text-center">{{exercise?.difficulty}}</h1>        
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-list *ngIf="exercise.muscle_group && exercise.muscle_group.length > 0; else noMuscle">
-          <ion-item *ngFor="let muscle of exercise.muscle_group">
+        <ion-list *ngIf="exercise?.muscle_group && exercise?.muscle_group.length > 0; else noMuscle">
+          <ion-item *ngFor="let muscle of exercise?.muscle_group">
             <h1 class="ion-text-center">{{muscle}}</h1>        
           </ion-item>
         </ion-list>
@@ -43,8 +43,8 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-list *ngIf="exercise.equipment && exercise.equipment.length > 0; else noEquipment">
-          <ion-item *ngFor="let element of exercise.equipment">
+        <ion-list *ngIf="exercise?.equipment && exercise?.equipment.length > 0; else noEquipment">
+          <ion-item *ngFor="let element of exercise?.equipment">
             <h1 class="ion-text-center">{{element}}</h1>        
           </ion-item>
         </ion-list>

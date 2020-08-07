@@ -8,7 +8,7 @@ export class AuthService {
    
   constructor(private http: HttpClient) { }
 
-  signIn(){
+  signUp(){
     let headerOptions: any = { 'Content-Type': 'application/json' };
     let headers = new HttpHeaders(headerOptions);
     

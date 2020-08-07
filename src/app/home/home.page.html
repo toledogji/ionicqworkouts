@@ -8,7 +8,22 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-button expand="block" color="warning" (click)="signIn()">
+  <ion-row>
+    <ion-col>
+      <ion-card>
+        <ion-card-content>
+          <ion-input type="text" placeholder="Username" #username></ion-input>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-content>
+          <ion-input type="password" placeholder="Password" #password></ion-input>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <ion-button expand="block" color="warning" (click)="signIn(username, password)">
     Sign In
   </ion-button>
 </ion-content>

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './auth.service';
+import { AuthService } from '../auth/auth.service';
 import { Storage } from '@ionic/storage';
 import { Router } from "@angular/router";
-
+import { User } from "../auth/user";
+import { AuthResponse } from '../auth/auth-response';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -10,13 +11,19 @@ import { Router } from "@angular/router";
 })
 export class HomePage{
 
+  authenticationResponse: AuthResponse;
   constructor( private authService: AuthService, private storage: Storage, private router: Router) {}
 
-  signIn(){
-    this.authService.signIn().subscribe( data => {
-      this.storage.set('token', data['token']);
-      this.storage.set('user', data['user']);
-      console.log("User logged in successful!");
+  signIn(username, password){
+
+    
+    let user: User = {
+      username: "toledogji",
+      password: "qworkouts"
+    }
+
+    this.authService.signIn(user).subscribe( data => {
+      console.log(data);
     });
     
   }

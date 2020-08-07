@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ExercisesService } from './exercises.service';
+import { ExercisesService } from '../auth/exercises.service';
 import { Exercise } from './exercise.model';
 import { Router } from '@angular/router';
 import { Storage } from "@ionic/storage";
@@ -17,15 +17,14 @@ export class ExercisesPage implements OnInit {
 
   ngOnInit() {
     this.exercisesService.getExercises().subscribe( data => {
-      console.log(data);
       this.exercises = data;
     })
   }
 
   ionViewWillEnter(){
     this.exercisesService.getExercises().subscribe( data => {
-      console.log(data);
       this.exercises = data;
+      console.log(this.exercises);
     })
   }
 

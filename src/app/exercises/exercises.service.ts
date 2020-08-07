@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Exercise } from './exercise.model';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Storage } from "@ionic/storage";
+
 @Injectable({
   providedIn: 'root'
 })

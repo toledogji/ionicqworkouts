@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ExercisesService } from '../exercises.service';
+import { ExercisesService } from '../../auth/exercises.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { Exercise } from '../exercise.model';
-
+import { LoadingService } from '../../loading-service/loading.service';
 @Component({
   selector: 'app-exercise-info',
   templateUrl: './exercise-info.page.html',
@@ -11,40 +11,26 @@ import { Exercise } from '../exercise.model';
 })
 export class ExerciseInfoPage implements OnInit {
 
-  exercise: Exercise; 
+  exercise: Exercise;
+  isLoading:boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute, 
               private exercisesService: ExercisesService,
               private router: Router,
-              private alertController: AlertController) { }
+              private alertController: AlertController,
+              public loadingService: LoadingService) { }
 
   ngOnInit() {
+    this.loadingService.present();
     this.activatedRoute.paramMap.subscribe(paramMap => {
       //Redirect
       const recipeId = paramMap.get('exerciseId');
-      this.exercise = this.exercisesService.getExercise(recipeId);
+      this.exercisesService.getExercise(recipeId).subscribe( data => {
+        this.exercise = data;
+        console.log(this.exercise.thumbnail);
+        this.loadingService.dismiss();
+      })
     })
-  }
-
-  async deleteExercise(){ 
-    const alertElement = await this.alertController.create({
-      header: 'Are you sure?',
-      message: 'Exercise will be deleted permanently',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        },
-        {
-          text: 'Delete',
-          handler: () => {
-            this.exercisesService.deleteExercise(this.exercise._id);
-            this.router.navigate(['/exercises']);
-          }
-        }
-      ]
-    });
-    await alertElement.present();
   }
 
 }
